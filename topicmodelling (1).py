@@ -1,4 +1,3 @@
-# prompt: i want this excel dataset i uploaded to be converted to a list
 
 import pandas as pd
 from google.colab import files
@@ -17,9 +16,6 @@ import pandas as pd  # For handling data and exporting to Excel
 
 # Download NLTK resources (if needed)
 nltk.download('punkt')  # For tokenizing words
-
-
-
 
 custom_stopwords= ["ναι", "οχι", "και", "αλλα", "μη", "ομως", "μα", "i", "γεια", "σας", "καλησπερα", "στο", "στη", "το", "τη", "τα", "τους", "οι", "ο", "η", "καλημερα"]
 
