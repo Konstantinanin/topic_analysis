@@ -2,27 +2,28 @@
 import pandas as pd
 from google.colab import files
 from gensim.models import LdaModel
-
-uploaded = files.upload()
-
-
-df =pd.read_excel("df_cleaned_greek_data (7).xlsx")
-
-
 import nltk
 import gensim
 from gensim import corpora
 from nltk.corpus import stopwords
-import pandas as pd  # For handling data and exporting to Excel
+import pandas as pd
 
-# Download NLTK resources (if needed)
+# upload file in colab
+uploaded = files.upload()
+
+# read excel and convert to dataframe
+df =pd.read_excel("df_cleaned_greek_data (7).xlsx")
+
+# Download NLTK resources
 nltk.download('punkt')  # For tokenizing words
 
 custom_stopwords= ["ναι", "οχι", "και", "αλλα", "μη", "ομως", "μα", "i", "γεια", "σας", "καλησπερα", "στο", "στη", "το", "τη", "τα", "τους", "οι", "ο", "η", "καλημερα"]
 
 def preprocess(text):
-    # Tokenize, remove stopwords, and retain only alphabetic characters
-    tokens = nltk.word_tokenize(text.lower())  # Tokenize using NLTK
+    '''Convert to lowercase, tokenize, retain only alphabetic characters
+    & remove stopwords.
+    '''
+    tokens = nltk.word_tokenize(text.lower()) 
     tokens = [word for word in tokens if word.isalpha()]
     tokens=[word for word in tokens if word not in custom_stopwords]
     return tokens
