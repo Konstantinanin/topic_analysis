@@ -1,6 +1,7 @@
 
 import pandas as pd
 from google.colab import files
+from gensim.models import LdaModel
 
 uploaded = files.upload()
 
@@ -29,21 +30,13 @@ def preprocess(text):
 # Step 2: Prepare the data
 processed_sentences = [preprocess(sentence) for sentence in sentences]
    
-
-# Step 2: Prepare the data
-processed_sentences = [preprocess(sentence) for sentence in sentences]
-
 # Step 3: Create Dictionary
 dictionary = corpora.Dictionary(processed_sentences)
-
 
 # Step 5: Create Corpus
 corpus = [dictionary.doc2bow(text) for text in processed_sentences]
 
-
 # Step 4: Train LDA Model
-from gensim.models import LdaModel
-
 lda_model = LdaModel(
     corpus=corpus,
     id2word=dictionary,
@@ -64,12 +57,7 @@ for idx, topic in lda.print_topics(num_words=3):
 # Step 6: Convert the topics list to a pandas DataFrame
 df_topics = pd.DataFrame(topics)
 
-
-df_topics.head()
-
 df_topics.to_excel("topic_modelling_20topics1.xlsx")
-
-from google.colab import files
 
 # Download the file to your local machine
 files.download("topic_modelling_20topics1.xlsx")
